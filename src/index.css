@@ -1,0 +1,168 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@100;200;300;400;500&display=swap');
+@import "tailwindcss";
+
+
+:root {
+  --main-color: #0aad0a;
+  --light-color: #f0f3f2;
+  --shadow: rgba(145, 158, 171, 0.2) 0px 2px 4px -1px, rgba(145, 158, 171, 0.14) 0px 4px 5px 0px, rgba(145, 158, 171, 0.12) 0px 1px 10px 0px;
+  --font-family: "Encode Sans Expanded", sans-serif;
+  --rating-color: #ffc908;
+  --nav-color: #f8f9fa;
+}
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+}
+body {
+  font-family: var(--font-family) !important;
+}
+.rating-color {
+  color: var(--rating-color);
+}
+.cursor-pointer {
+  cursor: pointer;
+}
+a, a:hover {
+  color: black;
+  text-decoration: none;
+}
+/* .product:hover {
+  box-shadow: var(--shadow);
+  border: 1px solid var(--main-color);
+} */
+.product .btn {
+  transition: transform 1s, opacity 1s;
+  transform: translateY(100%);
+  opacity: 0;
+}
+.product:hover .btn {
+  opacity: 1;
+  transform: translateY(25%);
+}
+.font-sm {
+  font-size: 14px;
+}
+.text-main {
+  color: var(--main-color);
+}
+.bg-main {
+  background-color: var(--main-color) !important;
+}
+.bg-main-light {
+  background-color: var(--light-color) !important;
+}
+.bg-nav {
+  background-color: var(--nav-color) !important;
+}
+.row {
+  @apply flex flex-wrap px-4 py-8 items-center;
+}
+.btn {
+  @apply px-4 py-2 w-full rounded-lg text-white bg-green-600 cursor-pointer;
+}
+.btn:hover {
+  @apply transition-colors duration-300 hover:!bg-green-700;
+}
+.category-img {
+  height: 200px;
+}
+.slick-prev:before,
+.slick-next:before {
+  color: var(--main-color) !important;
+  font-size: 30px !important;
+}
+.slick-prev {
+  left: -35px !important;
+}
+
+@layer components {
+  .preloader {
+    @apply text-center max-w-80 w-full ;
+  }
+  .cart {
+    display: block;
+    margin: 0 auto 1.5em auto;
+    @apply size-32 ;
+  }
+  .cart__lines,
+  .cart__top,
+  .cart__wheel1,
+  .cart__wheel2,
+  .cart__wheel-stroke {
+    animation: cartLines 2s ease-in-out infinite;
+  }
+  .cart__lines {
+    stroke: rgb(37, 244, 140);
+  }
+  .cart__top {
+    animation-name: cartTop;
+  }
+  .cart__wheel1 {
+    animation-name: cartWheel1;
+    transform: rotate(-0.25turn);
+    transform-origin: 43px 111px;
+  }
+  .cart__wheel2 {
+    animation-name: cartWheel2;
+    transform: rotate(0.25turn);
+    transform-origin: 102px 111px;
+  }
+  .cart__wheel-stroke {
+    animation-name: cartWheelStroke;
+  }
+  .cart__track {
+    stroke: rgba(23, 28, 26, 0.1);
+    transition: stroke .3s;
+  }
+
+
+  /* Animations */
+  @keyframes cartLines {
+    from,
+    to {
+      opacity: 0;
+    }
+    8%,
+    92% {
+      opacity: 1;
+    }
+  }
+  @keyframes cartTop {
+    from {
+      stroke-dashoffset: -338;
+    }
+    50% {
+      stroke-dashoffset: 0;
+    }
+    to {
+      stroke-dashoffset: 338;
+    }
+  }
+  @keyframes cartWheel1 {
+    from {
+      transform: rotate(-0.25turn);
+    }
+    to {
+      transform: rotate(2.75turn);
+    }
+  }
+  @keyframes cartWheel2 {
+    from {
+      transform: rotate(0.25turn);
+    }
+    to {
+      transform: rotate(3.25turn);
+    }
+  }
+  @keyframes cartWheelStroke {
+    from,
+    to {
+      stroke-dashoffset: 81.68;
+    }
+    50% {
+      stroke-dashoffset: 40.84;
+    }
+  }
+}
